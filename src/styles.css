@@ -1,0 +1,402 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * A² Technologies design system — brand palette (light, with navy-dark variant).
+ * Primary arrow orange #FF5F2F · Logo & text navy #1C1934 · Secondary teal #005F73
+ * Accent seafoam #94D2BD · Background #F2F8F7. All colours are semantic tokens.
+ * Never hardcode colours in components.
+ */
+
+@theme inline {
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-deep: var(--primary-deep);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --shadow-card: 0 1px 2px rgba(28, 25, 52, 0.06), 0 16px 38px -24px rgba(28, 25, 52, 0.28);
+  --shadow-lift: 0 3px 8px rgba(28, 25, 52, 0.1), 0 28px 56px -28px rgba(28, 25, 52, 0.4);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --background: #f2f8f7;
+  --foreground: #1c1934;
+
+  --card: #ffffff;
+  --card-foreground: #1c1934;
+  --popover: #ffffff;
+  --popover-foreground: #1c1934;
+
+  --primary: #ff5f2f;
+  --primary-foreground: #1c1934;
+  --primary-deep: #d64b20;
+
+  --secondary: #005f73;
+  --secondary-foreground: #ffffff;
+
+  --muted: #e3eeeb;
+  --muted-foreground: #54666f;
+
+  --accent: #94d2bd;
+  --accent-foreground: #0e3b31;
+  --accent-soft: #e0f3ed;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  --border: #dce6e3;
+  --input: #cbdbd6;
+  --ring: #ff5f2f;
+
+  --surface: #1c1934;
+  --surface-foreground: #f2f8f7;
+
+  --chart-1: #ff5f2f;
+  --chart-2: #005f73;
+  --chart-3: #94d2bd;
+  --chart-4: #1c1934;
+  --chart-5: #ffb08a;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1c1934;
+  --sidebar-primary: #ff5f2f;
+  --sidebar-primary-foreground: #1c1934;
+  --sidebar-accent: #e3eeeb;
+  --sidebar-accent-foreground: #1c1934;
+  --sidebar-border: #dce6e3;
+  --sidebar-ring: #ff5f2f;
+}
+
+.dark {
+  --background: #0e1524;
+  --foreground: #f2f8f7;
+  --card: #151e33;
+  --card-foreground: #f2f8f7;
+  --popover: #151e33;
+  --popover-foreground: #f2f8f7;
+
+  --primary: #ff5f2f;
+  --primary-foreground: #1c1934;
+  --primary-deep: #d64b20;
+
+  --secondary: #005f73;
+  --secondary-foreground: #ffffff;
+
+  --muted: #1c2539;
+  --muted-foreground: #9baab5;
+
+  --accent: #94d2bd;
+  --accent-foreground: #0e3b31;
+  --accent-soft: #e0f3ed;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: #2a3550;
+  --input: #33405c;
+  --ring: #ff5f2f;
+
+  --surface: #080b14;
+  --surface-foreground: #f2f8f7;
+
+  --sidebar: #101830;
+  --sidebar-foreground: #f2f8f7;
+  --sidebar-primary: #ff5f2f;
+  --sidebar-primary-foreground: #1c1934;
+  --sidebar-accent: #1c2539;
+  --sidebar-accent-foreground: #f2f8f7;
+  --sidebar-border: #2a3550;
+  --sidebar-ring: #ff5f2f;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Small uppercase label used above section headings */
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+/* Thin gold rule used as a section divider accent */
+@utility rule-accent {
+  display: block;
+  width: 3.5rem;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+@utility surface-panel {
+  background-color: var(--color-surface);
+  color: var(--color-surface-foreground);
+}
+
+@utility card-lift {
+  transform-style: preserve-3d;
+  transition:
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 360ms ease;
+  &:hover {
+    transform: perspective(900px) translateY(-8px) rotateX(4deg) rotateY(-4deg) scale(1.015);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in oklab, var(--color-accent) 58%, transparent);
+  }
+}
+
+
+@utility interactive-link {
+  position: relative;
+  &::after {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.35rem;
+    left: 0.75rem;
+    height: 1px;
+    content: "";
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 260ms ease;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@utility animate-reveal {
+  animation: reveal 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-reveal-late {
+  animation: reveal 760ms 160ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility image-drift {
+  animation: image-drift 12s ease-in-out infinite alternate;
+}
+
+@utility animate-rise {
+  animation: rise 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---------- 3D + motion layer ---------- */
+
+/* Scroll-triggered 3D entrances (see components/motion/Reveal.tsx) */
+.reveal-3d {
+  perspective: 1100px;
+  opacity: 0;
+  transform-style: preserve-3d;
+  transition:
+    opacity 820ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 820ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 820ms ease;
+  filter: blur(4px);
+}
+.reveal-3d-up { transform: translate3d(0, 40px, -80px) rotateX(10deg); }
+.reveal-3d-left { transform: translate3d(-48px, 0, -80px) rotateY(-14deg); }
+.reveal-3d-right { transform: translate3d(48px, 0, -80px) rotateY(14deg); }
+.reveal-3d-flip { transform: perspective(1100px) rotateX(-26deg) translateY(28px); transform-origin: top center; }
+.reveal-3d-zoom { transform: scale(0.9) translateZ(-120px); }
+.reveal-3d[data-shown="true"] {
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+}
+
+/* Pointer-tracked tilt (see components/motion/Tilt3D.tsx) */
+.tilt-3d {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glare-o: 0;
+  position: relative;
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.tilt-3d-glare::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: var(--glare-o);
+  transition: opacity 320ms ease;
+  background: radial-gradient(
+    22rem circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    color-mix(in oklab, var(--color-accent) 34%, transparent),
+    transparent 62%
+  );
+  mix-blend-mode: soft-light;
+}
+
+/* Any child that should pop forward inside a tilt/3D container */
+@utility layer-pop {
+  transform: translateZ(38px);
+  transform-style: preserve-3d;
+}
+
+/* Card hover that lifts and rotates slightly in depth */
+@utility card-3d {
+  transform-style: preserve-3d;
+  transition:
+    transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 380ms ease;
+  &:hover {
+    transform: perspective(900px) translateY(-8px) rotateX(4.5deg) rotateY(-4.5deg) scale(1.015);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in oklab, var(--color-accent) 60%, transparent);
+  }
+}
+
+@utility animate-float {
+  animation: float-3d 7s ease-in-out infinite;
+}
+
+@utility animate-float-slow {
+  animation: float-3d 11s ease-in-out infinite;
+}
+
+@utility animate-spin-slow {
+  animation: spin-3d 18s linear infinite;
+}
+
+@utility animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 4.5s linear infinite;
+}
+
+@keyframes float-3d {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateZ(0deg); }
+  50% { transform: translate3d(0, -14px, 30px) rotateZ(1.2deg); }
+}
+
+@keyframes spin-3d {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: perspective(900px) translate3d(0, 26px, -60px) rotateX(8deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes image-drift {
+  from { transform: scale(1.01); }
+  to { transform: scale(1.055); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal-3d {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
