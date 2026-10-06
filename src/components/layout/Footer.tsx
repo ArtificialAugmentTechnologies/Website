@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-import appIcon from "@/assets/images/A2-app-logo.png.asset.json";
+import appIcon from "@/assets/images/A2-app-logo.png";
 import { BrandLogo } from "@/components/BrandLogo";
 import { institute } from "@/data/institute";
 import { courses } from "@/data/courses";
@@ -26,7 +26,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-2.5">
             <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden sm:size-10">
-              <img src={appIcon.url} alt="A² Technologies logo" className="size-full object-contain" />
+              <img src={appIcon} alt="A² Technologies logo" className="size-full object-contain" />
             </span>
             <BrandLogo className="text-base" />
           </div>

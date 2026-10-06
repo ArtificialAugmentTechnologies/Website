@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
-import appIcon from "@/assets/images/A2-app-logo.png.asset.json";
+import appIcon from "@/assets/images/A2-app-logo.png";
 import { Button } from "@/components/ui/button";
 import { BrandLogo } from "@/components/BrandLogo";
 import { institute } from "@/data/institute";
@@ -46,7 +46,7 @@ export function Navbar() {
       <nav aria-label="Primary" className="mx-auto flex h-18 max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label={`${institute.name} — home`}>
           <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden sm:size-10 lg:size-11 transition-transform duration-300 hover:rotate-3 hover:scale-105">
-            <img src={appIcon.url} alt="A² Technologies logo" className="size-full object-contain" />
+            <img src={appIcon} alt="A² Technologies logo" className="size-full object-contain" />
           </span>
           <span className="leading-tight">
             <BrandLogo className="block text-base text-foreground" />
