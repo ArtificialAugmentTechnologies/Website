@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-import appIcon from "@/assets/images/a2-app-icon.png.asset.json";
+import appIcon from "@/assets/images/A2-app-logo.png.asset.json";
 import { BrandLogo } from "@/components/BrandLogo";
 import { institute } from "@/data/institute";
 import { courses } from "@/data/courses";

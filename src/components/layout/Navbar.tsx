@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 
-import appIcon from "@/assets/images/a2-app-icon.png.asset.json";
+import appIcon from "@/assets/images/A2-app-logo.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { BrandLogo } from "@/components/BrandLogo";
 import { institute } from "@/data/institute";
