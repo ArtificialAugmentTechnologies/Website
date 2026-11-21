@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-import appIcon from "@/assets/images/A2-app-logo.png";
+import a2LogoLoader from "@/assets/images/A2-logo-loader-v2.gif";
 import { BrandLogo } from "@/components/BrandLogo";
 import { institute } from "@/data/institute";
 import { courses } from "@/data/courses";
@@ -25,8 +25,16 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden sm:size-10">
-              <img src={appIcon} alt="A² Technologies logo" className="size-full object-contain" />
+            <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-lg sm:size-10">
+              <img
+                src={a2LogoLoader}
+                alt=""
+                aria-hidden="true"
+                width={600}
+                height={600}
+                loading="lazy"
+                className="size-full object-cover"
+              />
             </span>
             <BrandLogo className="text-base" />
           </div>

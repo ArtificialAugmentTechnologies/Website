@@ -13,6 +13,8 @@ import { faqs } from "@/data/content";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Frequently Asked Questions | A² Technologies" },
       {
         name: "description",

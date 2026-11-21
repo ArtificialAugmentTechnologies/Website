@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Compass, HeartHandshake, ShieldCheck } from "lucide-react";
 
-import fullLogo from "@/assets/images/a2-technologies-full-logo.jpeg.asset.json";
+import { AnimatedBrandIcon } from "@/components/AnimatedBrandIcon";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Button } from "@/components/ui/button";
 
@@ -104,12 +104,7 @@ function AboutPage() {
             </div>
           </div>
           <div className="flex items-center justify-center rounded-2xl border border-border bg-accent-soft p-10 shadow-[var(--shadow-card)] lg:p-14">
-            <img
-              src={fullLogo.url}
-              alt="A² Technologies logo"
-              loading="lazy"
-              className="h-28 w-auto object-contain md:h-36"
-            />
+            <AnimatedBrandIcon className="size-32 md:size-44" />
           </div>
         </div>
       </section>

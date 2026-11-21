@@ -31,6 +31,8 @@ export const Route = createFileRoute("/admissions")({
   validateSearch: searchSchema,
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Admissions — Apply to A² Technologies" },
       {
         name: "description",
@@ -140,7 +142,7 @@ function AdmissionsPage() {
           {steps.map((s, i) => (
             <li key={s.title} className="rounded-xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
               <div className="flex items-center gap-3">
-                <span className="flex size-9 items-center justify-center rounded-lg bg-primary font-display text-sm font-bold text-accent">
+                <span className="flex size-9 items-center justify-center rounded-lg bg-primary font-display text-sm font-bold text-white">
                   {i + 1}
                 </span>
                 <s.icon aria-hidden className="size-5 text-secondary" />

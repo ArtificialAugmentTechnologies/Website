@@ -7,6 +7,8 @@ import { pastEvents, upcomingEvents } from "@/data/content";
 export const Route = createFileRoute("/events")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Events — Open Labs, Clinics & Summits | A² Technologies" },
       {
         name: "description",

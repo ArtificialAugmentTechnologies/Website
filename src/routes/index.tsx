@@ -14,6 +14,7 @@ import { news, upcomingEvents } from "@/data/content";
 import { institute, stats } from "@/data/institute";
 import { Reveal } from "@/components/motion/Reveal";
 import { Tilt3D } from "@/components/motion/Tilt3D";
+import { CourseLogoOrbit } from "@/components/motion/CourseLogoOrbit";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,6 +26,8 @@ export const Route = createFileRoute("/")({
           "Career tracks in DevOps, data analytics and cloud engineering. Lab-first learning, industry mentors and 95% placement across 2025-26 cohorts.",
       },
       { property: "og:title", content: "A² Technologies — DevOps, Data & Cloud Training Institute" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       {
         property: "og:description",
         content:
@@ -44,18 +47,21 @@ function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="surface-panel relative overflow-hidden">
-        <div className="mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-[90rem] lg:grid-cols-[3fr_2fr]">
-          <div className="relative z-10 flex flex-col justify-center px-5 py-16 sm:px-10 lg:px-16 lg:py-20 xl:px-24">
-            <div className="animate-reveal flex items-center gap-3">
+      <section className="surface-panel dynamic-hero course-orbit-hero relative overflow-hidden">
+        <img src={heroImg} alt="Instructor teaching cloud engineering to learners at A² Technologies" width={1600} height={1200} fetchPriority="high" className="hero-backdrop" />
+        <div className="hero-scrim" aria-hidden="true" />
+        <CourseLogoOrbit />
+        <div className="relative mx-auto max-w-[90rem]">
+          <div className="hero-copy relative z-10 flex flex-col justify-center px-5 py-14 sm:px-10 lg:px-16 lg:py-16 xl:px-24">
+            <div className="animate-reveal flex items-center gap-4">
               <span className="h-px w-12 bg-accent" aria-hidden />
               <p className="eyebrow text-accent">Bengaluru · Established {institute.founded}</p>
             </div>
-            <h1 className="animate-reveal-late mt-7 max-w-3xl text-5xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl xl:text-8xl">
-              A<sup className="relative -top-[0.26em] text-[1.12em]">2</sup>{" "}
-              <span className="text-accent italic">Technologies.</span>
+            <h1 className="animate-reveal-late type-h1 mt-7 max-w-3xl">
+              A<sup className="relative -top-[0.55em] ml-[0.02em] text-[0.55em] font-extrabold leading-none text-accent">2</sup>{" "}
+              <span className="font-normal">Technologies.</span>
             </h1>
-            <p className="animate-reveal-late mt-7 max-w-xl text-base leading-relaxed text-surface-foreground/75 md:text-lg">
+            <p className="animate-reveal-late type-body-lg mt-7 max-w-xl text-surface-foreground/90">
               Engineer your career through rigorous DevOps, data and cloud training—built around live labs,
               expert mentors and outcomes that hold up at work.
             </p>
@@ -72,32 +78,13 @@ function HomePage() {
                 <div key={s.label} className="group">
                   <dt className="sr-only">{s.label}</dt>
                   <dd>
-                    <span className="block font-display text-2xl font-semibold text-surface-foreground transition-colors group-hover:text-accent">{s.value}</span>
-                    <span className="mt-1 block text-[0.68rem] font-semibold uppercase text-accent/75">{s.label}</span>
+                    <span className="block font-mono text-2xl font-semibold text-surface-foreground transition-colors group-hover:text-accent">{s.value}</span>
+                    <span className="label-mono mt-1 block text-[0.68rem] text-surface-foreground/70">{s.label}</span>
                   </dd>
                 </div>
               ))}
             </dl>
           </div>
-          <Tilt3D max={7} className="relative min-h-[28rem] overflow-hidden lg:min-h-full">
-            <img
-              src={heroImg}
-              alt="Instructor teaching cloud engineering to learners at A² Technologies"
-              width={1600}
-              height={1200}
-              fetchPriority="high"
-              className="image-drift absolute inset-0 size-full object-cover"
-            />
-            <div className="absolute inset-0 bg-primary/15" aria-hidden />
-            <div className="animate-float layer-pop absolute bottom-6 left-6 border border-surface-foreground/20 bg-surface/90 px-5 py-4 shadow-[var(--shadow-lift)] backdrop-blur-md sm:bottom-10 sm:left-10">
-              <p className="eyebrow text-accent">Live lab status</p>
-              <p className="mt-1 font-display text-lg font-semibold">Learning in production</p>
-            </div>
-            <div className="animate-float-slow layer-pop absolute right-6 top-8 hidden border border-accent/40 bg-surface/85 px-4 py-3 backdrop-blur-md sm:block">
-              <p className="eyebrow text-accent">Cohort 2026</p>
-              <p className="mt-1 font-display text-sm font-semibold">30 seats per batch</p>
-            </div>
-          </Tilt3D>
         </div>
       </section>
 
@@ -166,7 +153,7 @@ function HomePage() {
               </Button>
             }
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredCourses.map((c, i) => (
               <Reveal key={c.slug} variant="flip" delay={i * 90}>
                 <CourseCard course={c} />

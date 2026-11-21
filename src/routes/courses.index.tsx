@@ -19,6 +19,8 @@ import { courseCategories, courseLevels, courseModes, courses } from "@/data/cou
 export const Route = createFileRoute("/courses/")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Courses — Data Analytics, Power Platform & AI | A² Technologies" },
       {
         name: "description",

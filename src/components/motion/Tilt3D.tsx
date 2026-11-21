@@ -22,6 +22,7 @@ export function Tilt3D({ children, className, max = 9, glare = true }: Tilt3DPro
     (event: React.PointerEvent<HTMLDivElement>) => {
       const node = ref.current;
       if (!node) return;
+      if (document.documentElement.dataset["motion"] === "paused" || event.pointerType !== "mouse") return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       const rect = node.getBoundingClientRect();
       const px = (event.clientX - rect.left) / rect.width;

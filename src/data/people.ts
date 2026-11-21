@@ -1,8 +1,8 @@
-import imgSachithanantham from "@/assets/images/faculty-sachithanantham.jpg.asset.json";
-import imgArunkumar from "@/assets/images/faculty-arunkumar.jpg.asset.json";
-import imgMahendran from "@/assets/images/faculty-mahendran.jpg.asset.json";
-import imgAravind from "@/assets/images/faculty-aravind.jpg.asset.json";
-import imgGowtham from "@/assets/images/faculty-gowtham.jpg.asset.json";
+import imgSachithanantham from "@/assets/images/faculty-sachithanantham.jpg";
+import imgArunkumar from "@/assets/images/faculty-arunkumar.jpg";
+import imgMahendran from "@/assets/images/faculty-mahendran.jpg";
+import imgAravind from "@/assets/images/faculty-aravind.jpg";
+import imgGowtham from "@/assets/images/faculty-gowtham.jpg";
 
 export interface Faculty {
   slug: string;
@@ -27,7 +27,7 @@ export const faculty: Faculty[] = [
     experience: "13 years",
     subjects: ["Leadership", "Data Visualization", "Predictive Analytics", "Artificial Intelligence"],
     bio: "Data & AI professional focused on analytics, predictive analytics, data visualization and technology-driven solutions. Recognized for translating business requirements into innovative solutions and contributing to engineering and analytics initiatives.",
-    image: imgSachithanantham.url,
+    image: imgSachithanantham,
     featured: true,
   },
   {
@@ -39,7 +39,7 @@ export const faculty: Faculty[] = [
     experience: "7 years",
     subjects: ["Power Apps", "Power Automate", "Copilot", "AI-Assisted Development"],
     bio: "Power Platform and Copilot-focused developer working with Microsoft technologies and AI-assisted development. His profile is connected with GitHub Copilot certification and professional development around AI-powered software development.",
-    image: imgGowtham.url,
+    image: imgGowtham,
     featured: true,
   },
   {
@@ -51,7 +51,7 @@ export const faculty: Faculty[] = [
     experience: "4 years",
     subjects: ["Power BI", "Data Analytics", "SQL", "DAX", "Microsoft Copilot"],
     bio: "Data Analyst and Data Consultant with hands-on experience transforming raw data into meaningful insights. He has experience with Power BI and has conducted training in Power BI and Microsoft Copilot.",
-    image: imgArunkumar.url,
+    image: imgArunkumar,
     featured: true,
   },
   {
@@ -63,7 +63,7 @@ export const faculty: Faculty[] = [
     experience: "4 years",
     subjects: ["Power BI", "Power Apps", "Power Platform", "Copilot Development"],
     bio: "Data and Power Platform professional with experience working with Power BI, Power Apps and Power Platform solutions. He also develops and delivers Copilot solutions, combining data analytics, low-code platforms and AI-assisted development.",
-    image: imgMahendran.url,
+    image: imgMahendran,
     featured: true,
   },
   {
@@ -75,7 +75,7 @@ export const faculty: Faculty[] = [
     experience: "4 years",
     subjects: ["Power Platform", "Power Apps", "Copilot", "Automation"],
     bio: "Experienced Power Platform Developer focused on designing and developing solutions using Microsoft's Power Platform ecosystem, with hands-on experience across Power Platform development and automation in professional environments.",
-    image: imgAravind.url,
+    image: imgAravind,
     featured: true,
   },
 ];

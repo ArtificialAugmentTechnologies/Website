@@ -5,6 +5,8 @@ import { PageHeader } from "@/components/layout/PageHeader";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Terms & Conditions | A² Technologies" },
       {
         name: "description",

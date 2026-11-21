@@ -5,6 +5,10 @@ interface BrandLogoProps {
   className?: string;
 }
 
+/**
+ * Wordmark rule (brand guide): "A" and the superscript "²" in weight 800 — the ² in orange
+ * at about half size — "Technologies" in weight 400, slight negative letter-spacing.
+ */
 export function BrandLogo({ className }: BrandLogoProps) {
   const parts = institute.name.split("²");
   const prefix = parts[0];
@@ -13,13 +17,13 @@ export function BrandLogo({ className }: BrandLogoProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-baseline whitespace-nowrap font-display font-extrabold",
+        "inline-flex items-baseline whitespace-nowrap font-display tracking-[-0.02em]",
         className,
       )}
     >
-      {prefix}
-      <sup className="relative -top-[0.26em] mr-[0.18em] text-[1.12em] leading-none">2</sup>
-      {suffix}
+      <span className="font-extrabold">{prefix}</span>
+      <sup className="relative -top-[0.55em] mr-[0.5em] text-[0.55em] font-extrabold leading-none text-primary">2</sup>
+      <span className="font-normal">{suffix}</span>
     </span>
   );
 }
