@@ -19,8 +19,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   useEffect(() => {
     let live = true;
+    // If Supabase is not configured (e.g. missing env vars on the host), keep the
+    // public site working in a signed-out state instead of crashing every page.
+    let auth: typeof supabase.auth;
+    try {
+      auth = supabase.auth;
+    } catch (error) {
+      console.error("[Auth] Supabase unavailable; continuing signed out.", error);
+      setLoading(false);
+      return;
+    }
     const refresh = () => {
-      void supabase.auth.getUser().then(({ data }) => {
+      void auth.getUser().then(({ data }) => {
         if (live) {
           setUser(data.user); setLoading(false);
           const destination = sessionStorage.getItem("a2-auth-return");
@@ -29,9 +39,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             if (destination.startsWith("/") && !destination.startsWith("//") && !destination.includes("\\")) void router.navigate({ href: destination });
           }
         }
+      }).catch((error) => {
+        console.error("[Auth] Failed to load session.", error);
+        if (live) setLoading(false);
       });
     };
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+    const { data: { subscription } } = auth.onAuthStateChange((event) => {
       if (event === "PASSWORD_RECOVERY") { setRecovery(true); setTimeout(refresh, 0); return; }
       if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
       if (event === "SIGNED_OUT") { setUser(null); setRecovery(false); queryClient.clear(); }
