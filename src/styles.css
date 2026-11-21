@@ -711,7 +711,6 @@ html[data-motion="paused"] .card-lift:hover, html[data-motion="paused"] .card-3d
 @media (prefers-reduced-motion: no-preference) {
   .tech-orbit-cw { animation: tech-orbit-spin var(--orbit-dur, 60s) linear infinite; }
   .tech-orbit-ccw { animation: tech-orbit-spin var(--orbit-dur, 60s) linear infinite reverse; }
-  .tech-orbit:hover .tech-orbit-cw, .tech-orbit:hover .tech-orbit-ccw { animation-play-state: paused; }
   .tech-orbit-spark { animation: tech-orbit-twinkle 2.8s ease-in-out infinite; }
   .tech-orbit-pulse { animation: tech-orbit-ring-pulse 4s ease-out infinite; }
   .tech-orbit-core { animation: tech-orbit-core-glow 3.6s ease-in-out infinite; }
