@@ -83,9 +83,15 @@ export function Navbar() {
 
         <div className="ml-auto flex items-center gap-2 xl:ml-3 xl:border-l xl:border-border xl:pl-4">
           <ThemeToggle />
-          <Button variant="ghost" size="sm" className="hidden sm:inline-flex" onClick={openLogin} disabled={loading}>
-            <UserRound aria-hidden /> {user ? "Account" : "Login"}
-          </Button>
+          {user ? (
+            <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+              <Link to="/account"><UserRound aria-hidden /> Account</Link>
+            </Button>
+          ) : (
+            <Button variant="ghost" size="sm" className="hidden sm:inline-flex" onClick={openLogin} disabled={loading}>
+              <UserRound aria-hidden /> Login
+            </Button>
+          )}
           <Button asChild variant="default" size="sm" className="hidden h-10 sm:inline-flex">
             <Link to="/admissions">Apply now <ArrowUpRight aria-hidden /></Link>
           </Button>
@@ -119,9 +125,15 @@ export function Navbar() {
               </li>
             ))}
             <li className="mt-3 flex gap-2 px-1 pb-2">
-              <Button variant="outline" className="flex-1" onClick={() => { setOpen(false); openLogin(); }} disabled={loading}>
-                {user ? "Account" : "Login"}
-              </Button>
+              {user ? (
+                <Button asChild variant="outline" className="flex-1">
+                  <Link to="/account" onClick={() => setOpen(false)}>Account</Link>
+                </Button>
+              ) : (
+                <Button variant="outline" className="flex-1" onClick={() => { setOpen(false); openLogin(); }} disabled={loading}>
+                  Login
+                </Button>
+              )}
               <Button asChild variant="gold" className="flex-1">
                 <Link to="/admissions">Apply now</Link>
               </Button>

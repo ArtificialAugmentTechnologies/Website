@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { supabase } from "@/integrations/supabase/client";
+import { saveContactMessage } from "@/lib/forms";
 import { institute } from "@/data/institute";
 import { contactSchema, type ContactInput } from "@/lib/validations";
 import { sendFormSubmission } from "@/lib/form-submit";
@@ -62,15 +62,11 @@ function ContactPage() {
     }
 
     /* 2. Keep a copy in the database (best effort — email already delivered). */
-    const { error } = await supabase.from("contact_messages").insert({
-      name: values.name,
-      email: values.email,
-      phone: values.phone || null,
-      subject: values.subject,
-      message: values.message,
-    });
-
-    if (error) console.error("Enquiry copy not stored:", error.message);
+    try {
+      await saveContactMessage({ data: values });
+    } catch (error) {
+      console.error("Enquiry copy not stored:", error);
+    }
 
     reset();
     toast.success("Message sent — we usually reply within one working day.");

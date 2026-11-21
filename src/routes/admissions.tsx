@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { supabase } from "@/integrations/supabase/client";
+import { saveApplication } from "@/lib/forms";
 import { courses } from "@/data/courses";
 import { applicationSchema, type ApplicationInput } from "@/lib/validations";
 import { sendFormSubmission } from "@/lib/form-submit";
@@ -109,20 +109,11 @@ function AdmissionsPage() {
     }
 
     /* 2. Keep a copy in the database (best effort — email already delivered). */
-    const { error } = await supabase.from("applications").insert({
-      full_name: values.full_name,
-      email: values.email,
-      phone: values.phone,
-      date_of_birth: values.date_of_birth,
-      gender: values.gender,
-      address: values.address,
-      course_slug: values.course_slug,
-      qualification: values.qualification,
-      previous_institution: values.previous_institution || null,
-      message: values.message || null,
-    });
-
-    if (error) console.error("Application copy not stored:", error.message);
+    try {
+      await saveApplication({ data: values });
+    } catch (error) {
+      console.error("Application copy not stored:", error);
+    }
 
     reset();
     setSubmitted(true);
