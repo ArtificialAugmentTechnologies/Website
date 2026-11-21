@@ -686,39 +686,52 @@ html[data-motion="paused"] .card-lift:hover, html[data-motion="paused"] .card-3d
 .navigation-link[aria-current="page"]::after, .navigation-link:hover::after { transform: translateX(-50%) scale(1); }
 .course-orbit-hero .hero-copy { width: 52%; min-height: min(700px, calc(100svh - 7rem)); }
 .course-logo-orbit { position: absolute; z-index: 3; width: min(44%, 580px); aspect-ratio: 1; right: 3%; top: 50%; transform: translateY(-50%); }
-.course-orbit-ring { position: absolute; border: 1px solid color-mix(in oklab, var(--surface-foreground) 28%, transparent); border-radius: 50%; margin: 0; padding: 0; list-style: none; }
-.course-orbit-ring-middle { inset: 21%; --orbit-duration: 36s; }
-.course-orbit-ring-outer { inset: 4%; --orbit-duration: 54s; }
-.course-orbit-inner-ring { position: absolute; inset: 34%; border: 1px dashed color-mix(in oklab, var(--surface-foreground) 26%, transparent); border-radius: 50%; }
-.course-orbit-center { position: absolute; inset: 39%; overflow: hidden; border-radius: var(--radius); background: var(--logo-loader-background); box-shadow: var(--shadow-lift); outline: 1px solid color-mix(in oklab, var(--accent) 30%, transparent); outline-offset: 6px; }
-.course-orbit-center img { width: 100%; height: 100%; object-fit: cover; }
-.course-orbit-still { display: none; }
-.course-orbit-arm { position: absolute; inset: 0; animation: course-orbit-turn var(--orbit-duration) linear infinite; pointer-events: none; }
-.course-orbit-node { position: absolute; top: 0; left: 50%; width: 90px; height: 90px; transform: translate(-50%, -50%); }
-.course-orbit-content { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; animation: course-orbit-counter var(--orbit-duration) linear infinite; }
-.course-orbit-logo { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: var(--card); color: var(--secondary); border: 1px solid var(--border); box-shadow: var(--shadow-lift); }
-.course-orbit-logo img, .course-orbit-logo svg { width: 32px; height: 32px; object-fit: contain; }
-.course-orbit-name { color: var(--surface-foreground); font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; white-space: nowrap; background: var(--surface); padding: 3px 7px; border-radius: 4px; }
-.course-orbit-dot { position: absolute; top: 0; left: 50%; width: 10px; height: 10px; border-radius: 50%; background: var(--primary); transform: translate(-50%, -50%); }
-.course-orbit-arm:nth-child(2), .course-orbit-arm:nth-child(2) .course-orbit-content { animation-delay: -9s; }
-.course-orbit-arm:nth-child(3), .course-orbit-arm:nth-child(3) .course-orbit-content { animation-delay: -18s; }
-.course-orbit-arm:nth-child(4), .course-orbit-arm:nth-child(4) .course-orbit-content { animation-delay: -27s; }
-.course-orbit-arm:nth-child(5), .course-orbit-arm:nth-child(5) .course-orbit-content { animation-delay: -36s; }
-.course-orbit-arm:nth-child(6), .course-orbit-arm:nth-child(6) .course-orbit-content { animation-delay: -45s; }
-@keyframes course-orbit-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes course-orbit-counter { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-html[data-motion="paused"] .course-orbit-gif { display: none; }
-html[data-motion="paused"] .course-orbit-still { display: block; }
+/* Homepage tech orbit: logo core with two counter-turning rings of technology badges. */
+.tech-orbit { container-type: inline-size; --orbit-spark: #ff5f2e; }
+.tech-orbit-track { position: absolute; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--surface-foreground) 15%, transparent); pointer-events: none; }
+.tech-orbit-track-outer { inset: 3%; }
+.tech-orbit-track-middle { inset: 16%; border-color: color-mix(in oklab, var(--surface-foreground) 10%, transparent); }
+.tech-orbit-track-dashed { inset: 24%; border-style: dashed; border-color: color-mix(in oklab, var(--surface-foreground) 20%, transparent); }
+.tech-orbit-pulse { inset: 33%; border-color: color-mix(in oklab, var(--orbit-spark) 30%, transparent); }
+.tech-orbit-ring { position: absolute; left: 50%; top: 50%; translate: -50% -50%; }
+.tech-orbit-arm { position: absolute; inset: 0; }
+.tech-orbit-anchor { position: absolute; left: 50%; top: 0; }
+.tech-orbit-item { display: flex; flex-direction: column; align-items: center; gap: 1.2cqw; }
+.tech-orbit-badge { display: flex; align-items: center; justify-content: center; width: 11cqw; height: 11cqw; border-radius: 50%; background: #fff; color: #1b1934; box-shadow: 0 0 0 2px rgb(255 255 255 / 0.7), 0 10px 15px -3px rgb(0 0 0 / 0.3); transition: transform 200ms ease, box-shadow 200ms ease; }
+.tech-orbit-badge:hover { transform: scale(1.12); box-shadow: 0 0 0 4px color-mix(in oklab, var(--orbit-spark) 45%, transparent), 0 10px 25px -5px rgb(0 0 0 / 0.5); }
+.tech-orbit-badge img { width: 58%; height: 58%; object-fit: contain; }
+.tech-orbit-badge img.is-wide { width: 78%; height: auto; }
+.tech-orbit-badge svg { width: 55%; height: 55%; }
+.tech-orbit-label { white-space: nowrap; border-radius: 4px; background: rgb(27 25 52 / 0.8); color: rgb(255 255 255 / 0.9); padding: 0.3cqw 1.2cqw; font-family: var(--font-mono); font-size: max(9px, 2.3cqw); font-weight: 600; letter-spacing: 0.05em; }
+.tech-orbit-spark { position: absolute; left: 50%; top: 0; width: 1.6cqw; height: 1.6cqw; translate: -50% -50%; border-radius: 50%; background: var(--orbit-spark); box-shadow: 0 0 10px 3px color-mix(in oklab, var(--orbit-spark) 75%, transparent); }
+.tech-orbit-center { position: absolute; left: 50%; top: 50%; z-index: 10; translate: -50% -50%; }
+.tech-orbit-core { border-radius: 4.5cqw; padding: 0.8cqw; background: rgb(255 255 255 / 0.04); outline: 1px solid rgb(255 255 255 / 0.15); box-shadow: 0 0 0 0 color-mix(in oklab, var(--orbit-spark) 35%, transparent), 0 20px 50px -10px rgb(0 0 0 / 0.6); }
+.tech-orbit-core img { display: block; width: 26cqw; height: 26cqw; border-radius: 4cqw; object-fit: cover; }
+.tech-orbit-core .course-orbit-still { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .tech-orbit-cw { animation: tech-orbit-spin var(--orbit-dur, 60s) linear infinite; }
+  .tech-orbit-ccw { animation: tech-orbit-spin var(--orbit-dur, 60s) linear infinite reverse; }
+  .tech-orbit:hover .tech-orbit-cw, .tech-orbit:hover .tech-orbit-ccw { animation-play-state: paused; }
+  .tech-orbit-spark { animation: tech-orbit-twinkle 2.8s ease-in-out infinite; }
+  .tech-orbit-pulse { animation: tech-orbit-ring-pulse 4s ease-out infinite; }
+  .tech-orbit-core { animation: tech-orbit-core-glow 3.6s ease-in-out infinite; }
+}
+@keyframes tech-orbit-spin { to { transform: rotate(360deg); } }
+@keyframes tech-orbit-twinkle { 0%, 100% { opacity: 1; scale: 1; } 50% { opacity: 0.35; scale: 0.6; } }
+@keyframes tech-orbit-ring-pulse { 0% { scale: 0.92; opacity: 0.9; } 100% { scale: 1.35; opacity: 0; } }
+@keyframes tech-orbit-core-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--orbit-spark) 35%, transparent), 0 20px 50px -10px rgb(0 0 0 / 0.6); }
+  50% { box-shadow: 0 0 0 10px color-mix(in oklab, var(--orbit-spark) 0%, transparent), 0 20px 50px -10px rgb(0 0 0 / 0.6); }
+}
+html[data-motion="paused"] .tech-orbit-core .course-orbit-gif { display: none; }
+html[data-motion="paused"] .tech-orbit-core .course-orbit-still { display: block; }
 @media (max-width: 767px) {
   .course-orbit-hero .hero-copy { width: 100%; min-height: 0; }
   .course-logo-orbit { position: relative; width: min(430px, 90%); top: auto; right: auto; transform: none; margin: 32px auto 40px; order: 2; }
-  .course-orbit-logo { width: 46px; height: 46px; }
-  .course-orbit-logo img, .course-orbit-logo svg { width: 28px; height: 28px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .course-orbit-arm, .course-orbit-content { animation-play-state: paused !important; }
-  .course-orbit-gif { display: none; }
-  .course-orbit-still { display: block; }
+  .tech-orbit-core .course-orbit-gif { display: none; }
+  .tech-orbit-core .course-orbit-still { display: block; }
 }
 .brand-icon-letter { fill: var(--logo-line); }
 .brand-icon-track, .brand-icon-trace { fill: none; stroke: var(--logo-line); stroke-width: 33; }

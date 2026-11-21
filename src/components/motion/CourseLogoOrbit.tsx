@@ -1,52 +1,109 @@
-import { BrainCircuit, Database } from "lucide-react";
-import companyLogo from "@/assets/images/A2-logo-loader-v2.gif";
-import powerBi from "@/assets/images/power-bi.svg";
-import powerAutomate from "@/assets/images/power-automate.svg";
-import python from "@/assets/images/python.svg";
-import staticLogo from "@/assets/images/A2-app-logo.png";
+import type { CSSProperties } from "react";
+import { BrainCircuit } from "lucide-react";
+import companyLogo from "@/assets/images/A2-logo-orbit.gif";
+import staticLogo from "@/assets/images/A2-logo-orbit-still.png";
+import aws from "@/assets/images/tech/aws.png";
+import azure from "@/assets/images/tech/azure.png";
+import claude from "@/assets/images/tech/claude.png";
+import github from "@/assets/images/tech/github.png";
+import huggingFace from "@/assets/images/tech/huggingface.svg";
+import langGraph from "@/assets/images/tech/langgraph.png";
+import python from "@/assets/images/tech/python.png";
+import sql from "@/assets/images/tech/sql.png";
 
-const middleTechnologies = [
-  { name: "Power BI", image: powerBi },
-  { name: "Power Automate", image: powerAutomate },
+type Technology = { label: string; src?: string; wide?: boolean };
+
+// Inner ring turns anticlockwise, outer ring clockwise. Badges counter-turn to stay upright.
+const INNER: Technology[] = [
+  { label: "AI & ML" },
+  { label: "Claude", src: claude },
+  { label: "Hugging Face", src: huggingFace },
+  { label: "LangGraph", src: langGraph, wide: true },
+];
+const OUTER: Technology[] = [
+  { label: "Python", src: python },
+  { label: "SQL", src: sql },
+  { label: "Azure", src: azure },
+  { label: "AWS", src: aws },
+  { label: "GitHub", src: github },
 ];
 
-const outerTechnologies = [
-  { name: "SQL", icon: Database },
-  { name: "Python", image: python },
-  { name: "AI & ML", icon: BrainCircuit },
-];
+type OrbitStyle = CSSProperties & { "--orbit-dur": string };
+
+function Badge({ item }: { item: Technology }) {
+  return (
+    <span className="tech-orbit-item">
+      <span className="tech-orbit-badge">
+        {item.src ? (
+          <img src={item.src} alt="" draggable={false} className={item.wide ? "is-wide" : undefined} />
+        ) : (
+          <BrainCircuit aria-hidden="true" strokeWidth={1.8} />
+        )}
+      </span>
+      <span className="tech-orbit-label">{item.label}</span>
+    </span>
+  );
+}
+
+/** One ring that turns; `size` is its diameter as a % of the orbit box. */
+function Ring({ items, size, duration, reverse = false, offset = 0 }: { items: Technology[]; size: number; duration: number; reverse?: boolean; offset?: number }) {
+  const style: OrbitStyle = { width: `${size}%`, height: `${size}%`, "--orbit-dur": `${duration}s` };
+  return (
+    <div className={`tech-orbit-ring ${reverse ? "tech-orbit-ccw" : "tech-orbit-cw"}`} style={style}>
+      {items.map((item, i) => {
+        const angle = offset + (360 / items.length) * i;
+        return (
+          <div key={item.label} className="tech-orbit-arm" style={{ transform: `rotate(${angle}deg)` }}>
+            <div className="tech-orbit-anchor" style={{ transform: `translate(-50%, -50%) rotate(${-angle}deg)` }}>
+              <div className={reverse ? "tech-orbit-cw" : "tech-orbit-ccw"} style={{ "--orbit-dur": `${duration}s` } as OrbitStyle} title={item.label}>
+                <Badge item={item} />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Glowing orange dots riding a ring (decorative). */
+function Sparks({ size, count, duration, reverse = false }: { size: number; count: number; duration: number; reverse?: boolean }) {
+  const style: OrbitStyle = { width: `${size}%`, height: `${size}%`, "--orbit-dur": `${duration}s` };
+  return (
+    <div className={`tech-orbit-ring ${reverse ? "tech-orbit-ccw" : "tech-orbit-cw"}`} style={style} aria-hidden="true">
+      {Array.from({ length: count }, (_, i) => (
+        <div key={i} className="tech-orbit-arm" style={{ transform: `rotate(${(360 / count) * i + 20}deg)` }}>
+          <span className="tech-orbit-spark" style={{ animationDelay: `${i * 0.7}s` }} />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export function CourseLogoOrbit() {
   return (
-    <div className="course-logo-orbit" role="group" aria-label="A² Technologies surrounded by course technologies">
-      <div className="course-orbit-inner-ring" aria-hidden="true" />
-      <div className="course-orbit-center">
-        <img src={companyLogo} width={600} height={600} alt="A² Technologies animated logo" className="course-orbit-gif" />
-        <img src={staticLogo} width={600} height={600} alt="A² Technologies logo" className="course-orbit-still" />
+    <div
+      className="course-logo-orbit tech-orbit"
+      role="img"
+      aria-label="A² Technologies logo surrounded by Python, SQL, Azure, AWS, GitHub, AI & ML, Claude, Hugging Face and LangGraph"
+    >
+      <div className="tech-orbit-track tech-orbit-track-outer" aria-hidden="true" />
+      <div className="tech-orbit-track tech-orbit-track-middle" aria-hidden="true" />
+      <div className="tech-orbit-track tech-orbit-track-dashed" aria-hidden="true" />
+      <div className="tech-orbit-track tech-orbit-pulse" aria-hidden="true" />
+
+      <Sparks size={68} count={3} duration={26} reverse />
+      <Sparks size={94} count={4} duration={40} />
+
+      <div className="tech-orbit-center">
+        <div className="tech-orbit-core">
+          <img src={companyLogo} width={600} height={600} alt="" className="course-orbit-gif" />
+          <img src={staticLogo} width={600} height={600} alt="" className="course-orbit-still" />
+        </div>
       </div>
-      {[middleTechnologies, outerTechnologies].map((technologies, ringIndex) => (
-        <ul key={ringIndex} className={`course-orbit-ring course-orbit-ring-${ringIndex === 0 ? "middle" : "outer"}`} aria-label={ringIndex === 0 ? "Middle ring course technologies" : "Outer ring course technologies"}>
-          {technologies.flatMap((technology) => {
-            const image = "image" in technology ? technology.image : undefined;
-            const Icon = "icon" in technology ? technology.icon : undefined;
-            return [
-              <li key={technology.name} className="course-orbit-arm">
-                <div className="course-orbit-node">
-                  <div className="course-orbit-content">
-                    <span className="course-orbit-logo">
-                      {image ? <img src={image} width={40} height={40} alt="" /> : Icon ? <Icon aria-hidden="true" /> : null}
-                    </span>
-                    <span className="course-orbit-name">{technology.name}</span>
-                  </div>
-                </div>
-              </li>,
-              <li key={`${technology.name}-dot`} className="course-orbit-arm" aria-hidden="true">
-                <span className="course-orbit-dot" />
-              </li>,
-            ];
-          })}
-        </ul>
-      ))}
+
+      <Ring items={INNER} size={52} duration={48} reverse offset={45} />
+      <Ring items={OUTER} size={94} duration={70} />
     </div>
   );
 }
