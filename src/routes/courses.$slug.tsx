@@ -29,6 +29,8 @@ export const Route = createFileRoute("/courses/$slug")({
         { name: "description", content: course.summary },
         { property: "og:title", content: `${course.name} — A² Technologies` },
         { property: "og:description", content: course.summary },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },

@@ -7,6 +7,8 @@ import { news } from "@/data/content";
 export const Route = createFileRoute("/news/")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "News & Announcements | A² Technologies" },
       {
         name: "description",

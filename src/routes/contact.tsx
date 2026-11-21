@@ -17,6 +17,8 @@ import { sendFormSubmission } from "@/lib/form-submit";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Contact A² Technologies — Admissions & Enquiries" },
       {
         name: "description",

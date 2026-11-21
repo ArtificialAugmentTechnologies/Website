@@ -8,6 +8,8 @@ import { gallery, galleryCategories, type GalleryCategory } from "@/data/content
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Gallery — Campus, Labs & Events | A² Technologies" },
       {
         name: "description",
