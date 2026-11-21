@@ -681,9 +681,28 @@ html[data-motion="paused"] .card-lift:hover, html[data-motion="paused"] .card-3d
 @media (prefers-reduced-motion: reduce) { .opening-logo-intro { display: none; } }
 .brand-icon-background { fill: var(--logo-ink); }
 .site-navigation { box-shadow: var(--shadow-card); }
-.navigation-link { position: relative; display: block; }
-.navigation-link::after { content: ""; position: absolute; bottom: 2px; left: 50%; width: 5px; height: 5px; border-radius: 50%; background: var(--primary); transform: translateX(-50%) scale(0); transition: transform 200ms ease; }
-.navigation-link[aria-current="page"]::after, .navigation-link:hover::after { transform: translateX(-50%) scale(1); }
+/* Desktop nav: a soft pill follows the pointer; a glowing bar marks (and slides to) the current page. */
+.navigation-link { position: relative; display: block; border-radius: 9999px; transition: color 200ms ease, transform 160ms ease; }
+.navigation-link:active { transform: scale(0.94); }
+.navigation-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.nav-hover-pill, .nav-active-bar { position: absolute; left: 0; pointer-events: none; opacity: 0; }
+.nav-hover-pill {
+  top: 50%; height: 2.25rem; margin-top: -1.125rem; border-radius: 9999px;
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primary) 28%, transparent);
+}
+.nav-active-bar {
+  bottom: 0.2rem; height: 2px; border-radius: 9999px;
+  background: linear-gradient(90deg, transparent, var(--primary) 20%, var(--accent) 80%, transparent);
+  box-shadow: 0 0 10px 1px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+.nav-hover-pill.is-visible, .nav-active-bar.is-visible { opacity: 1; }
+.navigation-links.is-ready .nav-hover-pill { transition: transform 380ms cubic-bezier(0.34, 1.4, 0.64, 1), width 380ms cubic-bezier(0.34, 1.4, 0.64, 1), opacity 200ms ease; }
+.navigation-links.is-ready .nav-active-bar { transition: transform 520ms cubic-bezier(0.22, 1.2, 0.36, 1), width 520ms cubic-bezier(0.22, 1.2, 0.36, 1), opacity 250ms ease; }
+@media (prefers-reduced-motion: reduce) {
+  .navigation-links.is-ready .nav-hover-pill, .navigation-links.is-ready .nav-active-bar { transition: opacity 150ms ease; }
+  .navigation-link:active { transform: none; }
+}
 .course-orbit-hero .hero-copy { width: 52%; min-height: min(700px, calc(100svh - 7rem)); }
 .course-logo-orbit { position: absolute; z-index: 3; width: min(44%, 580px); aspect-ratio: 1; right: 3%; top: 50%; transform: translateY(-50%); }
 /* Homepage tech orbit: logo core with two counter-turning rings of technology badges. */
@@ -705,8 +724,26 @@ html[data-motion="paused"] .card-lift:hover, html[data-motion="paused"] .card-3d
 .tech-orbit-label { white-space: nowrap; border-radius: 4px; background: rgb(27 25 52 / 0.8); color: rgb(255 255 255 / 0.9); padding: 0.3cqw 1.2cqw; font-family: var(--font-mono); font-size: max(9px, 2.3cqw); font-weight: 600; letter-spacing: 0.05em; }
 .tech-orbit-spark { position: absolute; left: 50%; top: 0; width: 1.6cqw; height: 1.6cqw; translate: -50% -50%; border-radius: 50%; background: var(--orbit-spark); box-shadow: 0 0 10px 3px color-mix(in oklab, var(--orbit-spark) 75%, transparent); }
 .tech-orbit-center { position: absolute; left: 50%; top: 50%; z-index: 10; translate: -50% -50%; }
-.tech-orbit-core { border-radius: 4.5cqw; padding: 0.8cqw; background: rgb(255 255 255 / 0.04); outline: 1px solid rgb(255 255 255 / 0.15); box-shadow: 0 0 0 0 color-mix(in oklab, var(--orbit-spark) 35%, transparent), 0 20px 50px -10px rgb(0 0 0 / 0.6); }
-.tech-orbit-core img { display: block; width: 26cqw; height: 26cqw; border-radius: 4cqw; object-fit: cover; }
+/* Centre orb: filled with the logo GIF's own background (#191834) so the square image melts into a round,
+   lit glass orb instead of sitting on the photo as a tile. */
+.tech-orbit-core {
+  --orb-ink: #191834;
+  position: relative; display: grid; place-items: center; overflow: hidden;
+  width: 30cqw; height: 30cqw; border-radius: 50%;
+  background: var(--orb-ink);
+  box-shadow:
+    0 0 3cqw 0.4cqw color-mix(in oklab, var(--orbit-spark) 28%, transparent),
+    0 2.4cqw 6cqw -1cqw rgb(0 0 0 / 0.65);
+}
+.tech-orbit-core::after {
+  /* Rim, edge shading and glass sheen sit ABOVE the image, so image and orb are lit identically (no seam). */
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 30% 12%, rgb(255 255 255 / 0.10), transparent 55%),
+    radial-gradient(circle closest-side, transparent 68%, rgb(5 4 18 / 0.55) 100%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.13), inset 0 -1.2cqw 2.4cqw rgb(0 0 0 / 0.35);
+}
+.tech-orbit-core img { display: block; width: 22cqw; height: 22cqw; object-fit: contain; }
 .tech-orbit-core .course-orbit-still { display: none; }
 @media (prefers-reduced-motion: no-preference) {
   .tech-orbit-cw { animation: tech-orbit-spin var(--orbit-dur, 60s) linear infinite; }
@@ -719,8 +756,8 @@ html[data-motion="paused"] .card-lift:hover, html[data-motion="paused"] .card-3d
 @keyframes tech-orbit-twinkle { 0%, 100% { opacity: 1; scale: 1; } 50% { opacity: 0.35; scale: 0.6; } }
 @keyframes tech-orbit-ring-pulse { 0% { scale: 0.92; opacity: 0.9; } 100% { scale: 1.35; opacity: 0; } }
 @keyframes tech-orbit-core-glow {
-  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--orbit-spark) 35%, transparent), 0 20px 50px -10px rgb(0 0 0 / 0.6); }
-  50% { box-shadow: 0 0 0 10px color-mix(in oklab, var(--orbit-spark) 0%, transparent), 0 20px 50px -10px rgb(0 0 0 / 0.6); }
+  0%, 100% { box-shadow: 0 0 3cqw 0.4cqw color-mix(in oklab, var(--orbit-spark) 28%, transparent), 0 2.4cqw 6cqw -1cqw rgb(0 0 0 / 0.65); }
+  50% { box-shadow: 0 0 5cqw 1.2cqw color-mix(in oklab, var(--orbit-spark) 16%, transparent), 0 2.4cqw 6cqw -1cqw rgb(0 0 0 / 0.65); }
 }
 html[data-motion="paused"] .tech-orbit-core .course-orbit-gif { display: none; }
 html[data-motion="paused"] .tech-orbit-core .course-orbit-still { display: block; }

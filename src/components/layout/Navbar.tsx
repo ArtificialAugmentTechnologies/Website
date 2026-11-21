@@ -7,6 +7,7 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { institute } from "@/data/institute";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { NavLinks } from "@/components/layout/NavLinks";
 import { cn } from "@/lib/utils";
 import a2LogoLoader from "@/assets/images/A2-logo-loader-v2.gif";
 
@@ -66,20 +67,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <ul className="navigation-links ml-auto hidden items-center gap-0.5 xl:flex">
-          {navLinks.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                activeOptions={{ exact: link.to === "/" }}
-                className="navigation-link px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                activeProps={{ className: "text-foreground", "aria-current": "page" }}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <NavLinks links={navLinks} />
 
         <div className="ml-auto flex items-center gap-2 xl:ml-3 xl:border-l xl:border-border xl:pl-4">
           <ThemeToggle />
