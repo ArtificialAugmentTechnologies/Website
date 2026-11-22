@@ -7,6 +7,7 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { institute } from "@/data/institute";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { NavLinks } from "@/components/layout/NavLinks";
 import { cn } from "@/lib/utils";
 import a2LogoLoader from "@/assets/images/A2-logo-loader-v2.gif";
 
@@ -66,26 +67,19 @@ export function Navbar() {
           </span>
         </Link>
 
-        <ul className="navigation-links ml-auto hidden items-center gap-0.5 xl:flex">
-          {navLinks.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                activeOptions={{ exact: link.to === "/" }}
-                className="navigation-link px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                activeProps={{ className: "text-foreground", "aria-current": "page" }}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <NavLinks links={navLinks} />
 
         <div className="ml-auto flex items-center gap-2 xl:ml-3 xl:border-l xl:border-border xl:pl-4">
           <ThemeToggle />
-          <Button variant="ghost" size="sm" className="hidden sm:inline-flex" onClick={openLogin} disabled={loading}>
-            <UserRound aria-hidden /> {user ? "Account" : "Login"}
-          </Button>
+          {user ? (
+            <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+              <Link to="/account"><UserRound aria-hidden /> Account</Link>
+            </Button>
+          ) : (
+            <Button variant="ghost" size="sm" className="hidden sm:inline-flex" onClick={openLogin} disabled={loading}>
+              <UserRound aria-hidden /> Login
+            </Button>
+          )}
           <Button asChild variant="default" size="sm" className="hidden h-10 sm:inline-flex">
             <Link to="/admissions">Apply now <ArrowUpRight aria-hidden /></Link>
           </Button>
@@ -119,9 +113,15 @@ export function Navbar() {
               </li>
             ))}
             <li className="mt-3 flex gap-2 px-1 pb-2">
-              <Button variant="outline" className="flex-1" onClick={() => { setOpen(false); openLogin(); }} disabled={loading}>
-                {user ? "Account" : "Login"}
-              </Button>
+              {user ? (
+                <Button asChild variant="outline" className="flex-1">
+                  <Link to="/account" onClick={() => setOpen(false)}>Account</Link>
+                </Button>
+              ) : (
+                <Button variant="outline" className="flex-1" onClick={() => { setOpen(false); openLogin(); }} disabled={loading}>
+                  Login
+                </Button>
+              )}
               <Button asChild variant="gold" className="flex-1">
                 <Link to="/admissions">Apply now</Link>
               </Button>

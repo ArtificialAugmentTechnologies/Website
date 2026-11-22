@@ -1,29 +1,39 @@
-# Welcome to your Lovable project
+# A² Technologies website
 
-This project was built with [Lovable](https://lovable.dev).
+Marketing site and learner accounts for A² Technologies, built with TanStack Start, React, Tailwind CSS and Neon.
 
-## Build with Lovable
+## Run locally
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Needs Node.js and npm.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+npm install
+npm run dev        # http://localhost:8080
 ```
 
-## Built with
+`.env` must contain the Neon variables. Get them with the Neon CLI (`neon env pull`) once the folder is linked (`neon link`).
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build (Vercel uses this) |
+| `npm run db:migrate` | Apply new SQL files in `neon/migrations` to the Neon database |
+| `npm run lint` | Lint the code |
+
+## Backend (Neon)
+
+- **Database:** Neon Postgres, database `artificial_augment_technologies`. Tables: `site_users`, `applications`, `contact_messages`, plus Neon Auth's `neon_auth` schema.
+- **Login:** Neon Auth: email/password, Google, password reset by email link.
+- **Forms:** admissions and contact forms email the office (FormSubmit) and keep a copy in Neon.
+
+## Environment variables (also set these in Vercel)
+
+| Variable | Used for |
+| --- | --- |
+| `DATABASE_URL` | Pooled connection for the app |
+| `DATABASE_URL_UNPOOLED` | Direct connection for migrations (local only) |
+| `NEON_AUTH_BASE_URL` | Neon Auth URL (server) |
+| `NEON_AUTH_JWKS_URL` | Verifies login tokens on the server |
+| `VITE_NEON_AUTH_URL` | Neon Auth URL for the browser (same value as `NEON_AUTH_BASE_URL`) |

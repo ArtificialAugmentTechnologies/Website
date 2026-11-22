@@ -11,7 +11,7 @@ import { EventCard, formatDate } from "@/components/cards/EventCard";
 import { courses } from "@/data/courses";
 import { faculty, testimonials, whyChooseUs } from "@/data/people";
 import { news, upcomingEvents } from "@/data/content";
-import { institute, stats } from "@/data/institute";
+import { stats } from "@/data/institute";
 import { Reveal } from "@/components/motion/Reveal";
 import { Tilt3D } from "@/components/motion/Tilt3D";
 import { CourseLogoOrbit } from "@/components/motion/CourseLogoOrbit";
@@ -55,7 +55,7 @@ function HomePage() {
           <div className="hero-copy relative z-10 flex flex-col justify-center px-5 py-14 sm:px-10 lg:px-16 lg:py-16 xl:px-24">
             <div className="animate-reveal flex items-center gap-4">
               <span className="h-px w-12 bg-accent" aria-hidden />
-              <p className="eyebrow text-accent">Bengaluru · Established {institute.founded}</p>
+              <p className="eyebrow text-accent">Bengaluru</p>
             </div>
             <h1 className="animate-reveal-late type-h1 mt-7 max-w-3xl">
               A<sup className="relative -top-[0.55em] ml-[0.02em] text-[0.55em] font-extrabold leading-none text-accent">2</sup>{" "}

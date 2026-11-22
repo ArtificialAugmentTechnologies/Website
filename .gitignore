@@ -1,5 +1,7 @@
 # Logs
 .env
+.env.local
+.env.*.local
 logs
 *.log
 npm-debug.log*
@@ -31,6 +33,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.neon
 
 # Python
 __pycache__/
