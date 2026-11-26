@@ -107,7 +107,7 @@ function HomePage() {
             <SectionHeading
               eyebrow="About the institute"
               title="A technology institute built like an engineering team"
-              description="Since 2014 we have trained more than 5,000 professionals. Our cohorts are small, our labs are real, and every module ends with work you can show a hiring manager."
+              description="Our programme model brings together practitioner-led instruction, live cloud environments and structured portfolio development. Learners work through real scenarios, receive direct mentor feedback and graduate with evidence of job-ready capability."
             />
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               <div className="rounded-xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
