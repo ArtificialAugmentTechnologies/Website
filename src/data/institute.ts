@@ -4,7 +4,6 @@ export const institute = {
   tagline: "Augmenting Intelligence. Amplifying Impact.",
   description:
     "A² Technologies is a specialist technology training institute for DevOps, data analytics and cloud engineering. Industry mentors, lab-first learning and placement support.",
-  founded: 2014,
   email: "contact@a2technologies.in",
   phone: "+91 80 4711 2200",
   address: {
@@ -23,7 +22,7 @@ export const institute = {
 
 export const stats = [
   { value: "12+", label: "Career tracks" },
-  { value: "5,000+", label: "Learners trained" },
+  { value: "Live", label: "Cloud labs" },
   { value: "50+", label: "Industry mentors" },
-  { value: "95%", label: "Placement rate" },
+  { value: "Career", label: "Focused outcomes" },
 ];

@@ -70,10 +70,10 @@ function AboutPage() {
               technology industry.
             </p>
             <p>
-              As a newly established institute, our strength lies in our experienced faculty and working
-              industry professionals from leading organizations. We combine their real-world expertise with
-              structured, hands-on learning to help learners build strong technical foundations and
-              career-ready skills.
+              Our strength lies in a practitioner-led learning model shaped by experienced faculty and
+              working technology professionals. We combine industry expertise with structured, hands-on
+              learning, live cloud labs and guided portfolio projects to help learners build durable
+              technical foundations and communicate their capability with confidence.
             </p>
           </>
         }
